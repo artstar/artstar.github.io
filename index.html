@@ -92,12 +92,16 @@
     background: #2B388F;
   }
 
-  .score {
+  .info {
     position: absolute;
     right: 0;
     top: calc(var(--cell-size) * 5em);
     width: calc(var(--cell-size) * 4em);
-    height: 1em;
+    height: 2em;
+  }
+
+  .score {
+    font-size: 1.5em;
   }
 
   .menu {
@@ -130,7 +134,7 @@
 <div class="main">
   <div class="playfield"></div>
   <div class="preview"></div>
-  <div class="score"></div>
+  <div class="info"><div class="score"></div></div>
   <div class="menu"></div>
 </div>
 <script src="./index.js"></script>
