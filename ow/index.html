@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-<div><textarea id="input">{
+<div><textarea style="width:40vw; height: 40vh" id="input">{
  "format_version": 9,
  "format_type": "tournament",
  "players": [
@@ -6340,14 +6340,16 @@
 <script>
     document.querySelector("#run").addEventListener("click", () => {
         document.querySelector("#run").disabled = true;
-        let teams = balance(document.querySelector("#input").value);
-        display_output(
-            teams,
-            document.querySelector("#output"),
-            document.querySelector("#team-template").innerHTML,
-            document.querySelector("#player-template").innerHTML,
-        )
-        document.querySelector("#run").disabled = false
+        setTimeout(()=>{
+            let teams = balance(document.querySelector("#input").value);
+            display_output(
+                    teams,
+                    document.querySelector("#output"),
+                    document.querySelector("#team-template").innerHTML,
+                    document.querySelector("#player-template").innerHTML,
+            )
+            document.querySelector("#run").disabled = false
+        },1)
     }, false)
 </script>
 </html>

@@ -282,7 +282,7 @@ function fix_not_filled(teams, players, idx, start, condition) {
  */
 function shuffle_random(teams) {
     let n = teams.length;
-    const TIMEOUT = 1000;
+    const TIMEOUT = 10000;
     const PICK_TEAM = 4;
     const PICK_PLAYERS = 3;
     let target = target_function(teams.map(team => team.sr));
