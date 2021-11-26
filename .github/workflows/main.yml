@@ -1,0 +1,36 @@
+name: Build Pages
+on:
+  workflow_dispatch:
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current
+        uses: actions/checkout@v2
+        with:
+          path: current
+      - name: Checkout tetris
+        uses: actions/checkout@v2
+        with:
+          repository: artstar/rust-tetris
+          path: rust-tetris
+      - name: Wasm pack
+        working-directory: rust-tetris
+        run: |
+          curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+          wasm-pack build
+      - name: Npm build
+        working-directory: rust-tetris/www
+        run: |
+          npm install
+          npm run build
+      - name: Copy tetris
+        run: |
+          mkdir -p current/t
+          cp -r rust-tetris/www/dist/. current/t
+      - name: Commit and push
+        uses: EndBug/add-and-commit@v7.4.0
+        with:
+          cwd: './current'
+          pull: 'NO-PULL'
